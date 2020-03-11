@@ -2,6 +2,7 @@
      require_once("db_connect.php");
     if(isset($_POST['upload']))
     {
+        $username = $_POST['username'];
         $Image = $_FILES['pictures']['name'];
         $Type = $_FILES['pictures']['type'];
         $Temp = $_FILES['pictures']['tmp_name'];
@@ -16,7 +17,8 @@
         {
             if($size<1000000)
             {
-                $query = "insert into images (image) values ('$Image')";
+                
+                $query = "INSERT INTO `student`(`username`, `image`) VALUES ('$username','$target')";
                 mysqli_query($connection,$query);
                 move_uploaded_file($Temp,$target);
                 echo ' You have Successfully Uploaded Image on Database';
